@@ -1,5 +1,137 @@
-// Trivia Game Pseudocode
+// Global Variables
 // =================================================================
+// Game counters and timers
+var timer = 60;
+var intervalId;
+var correct = 0;
+var incorrect = 0;
+var unanswered = 0;
+
+// Array of question objects that contain the question string, the array of answer options, and the correct answer string (from the answer options array)
+var triviaQuestions = [
+
+    { question: 'Placeholder question 1',
+      choices: ['Choice 1', 'Choice 2', 'Choice 3', 'Choice 4'],
+      correctAnswer: 'Choice 1',
+    },
+
+    { question: 'Placeholder question 2',
+      choices: ['Choice 1', 'Choice 2', 'Choice 3', 'Choice 4'],
+      correctAnswer: 'Choice 1',
+    },
+
+    { question: 'Placeholder question 3',
+      choices: ['Choice 1', 'Choice 2', 'Choice 3', 'Choice 4'],
+      correctAnswer: 'Choice 1',
+    },
+
+    { question: 'Placeholder question 4',
+      choices: ['Choice 1', 'Choice 2', 'Choice 3', 'Choice 4'],
+      correctAnswer: 'Choice 1'
+    },
+
+    { question: 'Placeholder question 5',
+      choices: ['Choice 1', 'Choice 2', 'Choice 3', 'Choice 4'],
+      correctAnswer: 'Choice 1',
+    }
+
+];
+
+
+// Functions 
+// =================================================================
+// Start the countdown 
+function startCountdown () {
+    clearInterval(intervalId);
+
+    // Set the interval to decrease the timer by one second
+    intervalId = setInterval(decrement, 1000);
+}
+
+function decrement () {
+    timer--;
+    var timerDiv = $('<div>');
+    timerDiv.attr('id', 'countdown');
+    $('#title').append(timerDiv);
+    $('#countdown').html('Time remaining: ' + timer + ' seconds');
+    if (timer === 0) {
+        stopCountdown();
+    }
+}
+
+function stopCountdown () {
+    clearInterval(intervalId);
+}
+
+function generateQuestions () {
+    for (var i = 0; i < triviaQuestions.length; i++) {
+        $('#game').append('<div>' + triviaQuestions[i].question + '</div>');
+        // Create name value to apply to each question group
+        var name = "question-" + (i + 1);
+        
+        for (var j = 0; j < triviaQuestions[i].choices.length; j++) {
+            //Create unique value for each choice in a question group
+            var value = (j + 1);
+
+            $('#game').append('<p><input id="choices" type="radio" name="' + name + '" value="' + value + '">' + ' ' + triviaQuestions[i].choices[j] + '</input></p>');           
+        }  
+
+        // Above, use JQuery `.attr` to add input value `.attr('value', choices[i])`
+        
+        // Testing & Debugging
+        console.log(triviaQuestions[i].question);
+        console.log(triviaQuestions[i].choices);
+    }
+
+    // Create Done button
+    $('#game').append('<button id="done-button">Done</button>');
+
+    // Clear display when Done button is clicked
+    $('#done-button').on('click', function() {  
+        $('#game').empty();
+        displayResults();
+    })
+    
+}
+
+function displayResults () {
+    $('#game').append('<h1>Hello</h1>');
+
+    // If / else statements to check if the input value matches the correctAnswer string
+
+    // if: Update correct counter if true
+
+    // else if: Update incorrect counter if false
+
+    // else: Update unanswered counter if neither above conditions are met
+    
+}
+
+
+
+// Main Game Logic
+// =================================================================
+// Game start screen with h1 and start button
+$('#game').append('<h1 id="title">Totally Trivial Trivia!</h2>');
+$('#game').append('<button id="start-button">Start</button>');
+
+// On-click event function to start the game
+$('#start-button').on('click', function() {
+    // Remove start button
+    $('#start-button').remove();
+
+    startCountdown();
+    generateQuestions();
+    
+});
+
+$('#done-button').on('click', function() {  
+    displayResults();
+})
+
+// TRIVIA GAME PSEUDO
+// =================================================================
+
 // Create Start Game screen
     // Title
     // Start button
@@ -33,39 +165,14 @@
 
     // Play again button (reset game function)
 
-// GLOBAL VARIABLES
 // =================================================================
-//  Variable that will hold our setInterval that runs the stopwatch
-var startTimer = 99;
-var intervalId;
-var clockRunning = false;
 
+// Create a start game function
 
-// MAIN GAME FUNCTION
-// =================================================================
-window.onload = function() {
+// Create a done function
 
+// Create a countdown function
 
-function startClock() {
-    intervalidId = setInterval(decrement, 1000)
+// When player clicks Start button, need to execute start game function
 
-}
-
-function decrement() {
-    startTimer--;
-    $("#timer").html(startTimer);
-
-    if (startTimer === 0) {
-        stopTimer();
-    }
-}
-
-function stopTimer() {
-
-    clearInterval(intervalId);
-
-}
-
-startClock();
-
-}
+// When player clicks Done button, need to execute done function
