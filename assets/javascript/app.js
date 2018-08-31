@@ -46,6 +46,7 @@ function startCountdown () {
 
     // Set the interval to decrease the timer by one second
     intervalId = setInterval(decrement, 1000);
+
 }
 
 function decrement () {
@@ -73,16 +74,15 @@ function generateQuestions () {
             //Create unique value for each choice in a question group
             var value = (j + 1);
 
-            $('#game').append('<p><input id="choices" type="radio" name="' + name + '" value="' + value + '">' + ' ' + triviaQuestions[i].choices[j] + '</input></p>');           
+            $('#game').append('<p><input id="choices" type="radio" name="' + name + '"value="Choice ' + value + '">' + ' ' + triviaQuestions[i].choices[j] + '</input></p>');
+  
         }  
 
-        // Above, use JQuery `.attr` to add input value `.attr('value', choices[i])`
-        
         // Testing & Debugging
-        console.log(triviaQuestions[i].question);
-        console.log(triviaQuestions[i].choices);
+        // console.log(triviaQuestions[i].question);
+        // console.log(triviaQuestions[i].choices);
     }
-
+    
     // Create Done button
     $('#game').append('<button id="done-button">Done</button>');
 
@@ -94,17 +94,74 @@ function generateQuestions () {
     
 }
 
-function displayResults () {
-    $('#game').append('<h1>Hello</h1>');
+function checkResults () {
 
-    // If / else statements to check if the input value matches the correctAnswer string
+    $('input[type="radio"]').one('click', function() {
+        var radioValue1 = $('input[name="question-1"]:checked').val();
+        if (radioValue1 == triviaQuestions[0].correctAnswer) {
+            correct++;
+        }
+        else {
+            incorrect++;
+        }
+    })
 
-    // if: Update correct counter if true
-
-    // else if: Update incorrect counter if false
-
-    // else: Update unanswered counter if neither above conditions are met
+    $('input[type="radio"]').one('click', function() {
+        var radioValue2 = $('input[name="question-2"]:checked').val();
+        if (radioValue2 == triviaQuestions[1].correctAnswer) {
+            correct++;
+        }
+        else {
+            incorrect++;
+        }
     
+    $('input[type="radio"]').one('click', function() {
+        var radioValue3 = $('input[name="question-3"]:checked').val();
+        if (radioValue3 == triviaQuestions[2].correctAnswer) {
+            correct++;
+        }
+        else {
+            incorrect++;
+        }
+    })
+    
+    $('input[type="radio"]').one('click', function() {
+        var radioValue4 = $('input[name="question-4"]:checked').val();
+        if (radioValue4 == triviaQuestions[3].correctAnswer) {
+            correct++;
+        }
+        else {
+            incorrect++;
+        }
+    })
+    
+    $('input[type="radio"]').one('click', function() {
+        var radioValue5 = $('input[name="question-5"]:checked').val();
+        if (radioValue5 == triviaQuestions[4].correctAnswer) {
+            correct++;
+        }
+        else if (radioValue5 !== triviaQuestions[4].correctAnswer) {
+            incorrect++;
+        }
+    })
+    })
+
+        // If/else statements to check if the input value matches the correctAnswer string
+    
+        // if: Increase correct counter if true
+
+        // else if: Increase incorrect counter if false
+
+        // else: Update unanswered counter if neither above conditions are met
+
+}
+
+function displayResults () {
+    $('#game').append('<h1>Totally Trivial Trivia!</h2>');
+    $('#game').append('<h2>Results:</h2>');
+    $('#game').append('<p>Correct Answers: ' + correct + '</p>');
+    $('#game').append('<p>Incorrect Answers: ' + incorrect + '</p>');
+    $('#game').append('<p>Unanswered: ' + unanswered + '</p>');
 }
 
 
@@ -122,8 +179,12 @@ $('#start-button').on('click', function() {
 
     startCountdown();
     generateQuestions();
+    checkResults();
     
 });
+
+
+
 
 $('#done-button').on('click', function() {  
     displayResults();
