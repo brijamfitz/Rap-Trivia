@@ -65,13 +65,11 @@ function stopCountdown () {
 
 function generateQuestions () {
     for (var i = 0; i < triviaQuestions.length; i++) {
-        $('#game').append('<div>' + triviaQuestions[i].question + '</div>');
-        // Create unique value to apply to each question group
-        var name = i + 1;
+        $('#game').append('<div>' + triviaQuestions[i].question + '</div>');        
         
         for (var j = 0; j < triviaQuestions[i].choices.length; j++) {
 
-            $('#game').append('<p><input type="radio" name="question-' + name + '"value="' + triviaQuestions[i].choices[j] + '">' + ' ' + triviaQuestions[i].choices[j] + '</p>');
+            $('#game').append('<p><input type="radio" name="question-' + i + '"value="' + triviaQuestions[i].choices[j] + '">' + ' ' + triviaQuestions[i].choices[j] + '</p>');
         }  
     }
     
@@ -87,8 +85,8 @@ function generateQuestions () {
 
 function checkResults () {
 
-    $('input[type="radio"]').one('click', function() {
-            var radioValueOne = $('input[name="question-1"]:checked').val();
+    $('input[type="radio"]').click(function() {
+            var radioValueOne = $('input[name="question-0"]:checked').val();
             if (radioValueOne == triviaQuestions[0].correctAnswer) {
                 console.log(radioValueOne);
                 correct++;
@@ -97,8 +95,8 @@ function checkResults () {
             }      
     })
 
-    $('input[type="radio"]').one('click', function() {
-            var radioValueTwo = $('input[name="question-2"]:checked').val();
+    $('input[type="radio"]').click(function() {
+            var radioValueTwo = $('input[name="question-1"]:checked').val();
             if (radioValueTwo == triviaQuestions[1].correctAnswer) {
                 console.log(radioValueTwo);
                 correct++;
@@ -107,8 +105,8 @@ function checkResults () {
             }
     })
 
-    $('input[type="radio"]').one('click', function() {
-            var radioValueThree = $('input[name="question-3"]:checked').val();
+    $('input[type="radio"]').click(function() {
+            var radioValueThree = $('input[name="question-2"]:checked').val();
             if (radioValueThree == triviaQuestions[2].correctAnswer) {
                 console.log(radioValueThree);
                 correct++;
@@ -117,8 +115,8 @@ function checkResults () {
             }
     })
 
-    $('input[type="radio"]').one('click', function() {
-            var radioValueFour = $('input[name="question-4"]:checked').val();
+    $('input[type="radio"]').click(function() {
+            var radioValueFour = $('input[name="question-3"]:checked').val();
             if (radioValueFour == triviaQuestions[3].correctAnswer) {
                 console.log(radioValueFour);
                 correct++;
@@ -127,8 +125,8 @@ function checkResults () {
             }
     })
 
-    $('input[type="radio"]').one('click', function() {
-            var radioValueFive = $('input[name="question-5"]:checked').val();
+    $('input[type="radio"]').click(function() {
+            var radioValueFive = $('input[name="question-4"]:checked').val();
             if (radioValueFive == triviaQuestions[4].correctAnswer) {
                 console.log(radioValueFive);
                 correct++;
