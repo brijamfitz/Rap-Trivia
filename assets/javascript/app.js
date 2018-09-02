@@ -83,10 +83,65 @@ function generateQuestions () {
     })  
 }
 
-function checkResults () {
+// function checkResults () {
 
-    $('input[type="radio"]').click(function() {
+//     $('input[type="radio"]').click(function() {
+//             var radioValueOne = $('input[name="question-0"]:checked').val();
+//             if (radioValueOne == triviaQuestions[0].correctAnswer) {
+//                 console.log(radioValueOne);
+//                 correct++;
+//             } else {
+//                 incorrect++;
+//             }      
+//     })
+
+//     $('input[type="radio"]').click(function() {
+//             var radioValueTwo = $('input[name="question-1"]:checked').val();
+//             if (radioValueTwo == triviaQuestions[1].correctAnswer) {
+//                 console.log(radioValueTwo);
+//                 correct++;
+//             } else {
+//                 incorrect++;
+//             }
+//     })
+
+//     $('input[type="radio"]').click(function() {
+//             var radioValueThree = $('input[name="question-2"]:checked').val();
+//             if (radioValueThree == triviaQuestions[2].correctAnswer) {
+//                 console.log(radioValueThree);
+//                 correct++;
+//             } else {
+//                 incorrect++;
+//             }
+//     })
+
+//     $('input[type="radio"]').click(function() {
+//             var radioValueFour = $('input[name="question-3"]:checked').val();
+//             if (radioValueFour == triviaQuestions[3].correctAnswer) {
+//                 console.log(radioValueFour);
+//                 correct++;
+//             } else {
+//                 incorrect++;
+//             }
+//     })
+
+//     $('input[type="radio"]').click(function() {
+//             var radioValueFive = $('input[name="question-4"]:checked').val();
+//             if (radioValueFive == triviaQuestions[4].correctAnswer) {
+//                 console.log(radioValueFive);
+//                 correct++;
+//             } else {
+//                 incorrect++;
+//             }       
+//     })
+// }
+
+function displayResults () {
+    $('#done-button').on('click', function() {  
+
+        $('input[type="radio"]').click(function() {
             var radioValueOne = $('input[name="question-0"]:checked').val();
+            console.log(radioValueOne);
             if (radioValueOne == triviaQuestions[0].correctAnswer) {
                 console.log(radioValueOne);
                 correct++;
@@ -134,14 +189,13 @@ function checkResults () {
                 incorrect++;
             }       
     })
-}
 
-function displayResults () {
-    $('#game').append('<h1>Totally Trivial Trivia!</h2>');
-    $('#game').append('<h2>Results:</h2>');
-    $('#game').append('<p>Correct Answers: ' + correct + '</p>');
-    $('#game').append('<p>Incorrect Answers: ' + incorrect + '</p>');
-    $('#game').append('<p>Unanswered: ' + (triviaQuestions.length - (incorrect + correct)) + '</p>');
+        $('#game').append('<h1>Totally Trivial Trivia!</h2>');
+        $('#game').append('<h2>Results:</h2>');
+        $('#game').append('<p>Correct Answers: ' + correct + '</p>');
+        $('#game').append('<p>Incorrect Answers: ' + incorrect + '</p>');
+        $('#game').append('<p>Unanswered: ' + (triviaQuestions.length - (incorrect + correct)) + '</p>');
+    })
 }
 
 // MAIN 
@@ -157,10 +211,8 @@ $('#start-button').on('click', function() {
 
     startCountdown();
     generateQuestions();
-    checkResults();
+    displayResults();
     
 });
 
-$('#done-button').on('click', function() {  
-    displayResults();
-})
+
