@@ -55,7 +55,6 @@ function decrement () {
     $('#countdown').html('Time remaining: ' + timer + ' seconds');
     if (timer === 0) {
         stopCountdown();
-        displayResults();
     }
 }
 
@@ -78,66 +77,33 @@ function generateQuestions () {
 
 function displayResults () {
     $('#done-button').on('click', function() {  
-        // $('#game').empty();
+        $('#game-start').hide();
+        $('#game').hide();
 
-        var radioValueZero = $('input[name="question-0"]:checked').val();
-        console.log(radioValueZero);
-        if (radioValueZero === triviaQuestions[0].correctAnswer) {
-            correct++;
-        }
-        else {
-            incorrect++;
-        }
-
-        var radioValueOne = $('input[name="question-1"]:checked').val();
-        console.log(radioValueOne);
-        if (radioValueOne === triviaQuestions[1].correctAnswer) {
-            correct++;
-        }
-        else {
-            incorrect++;
+        for (var i = 0; i < triviaQuestions.length; i++) {
+            var radioValue = $('input[name="question-' + i + '"]:checked').val();
+            if (radioValue === triviaQuestions[i].correctAnswer) {
+                correct++;
+            } 
+            else {
+                incorrect++;
+            }
         }
 
-        var radioValueTwo = $('input[name="question-2"]:checked').val();
-        console.log(radioValueTwo);
-        if (radioValueTwo === triviaQuestions[2].correctAnswer) {
-            correct++;
-        }
-        else {
-            incorrect++;
-        }
-
-        var radioValueThree = $('input[name="question-3"]:checked').val();
-        console.log(radioValueThree);
-        if (radioValueThree === triviaQuestions[3].correctAnswer) {
-            correct++;
-        }
-        else {
-            incorrect++;
-        }
-
-        var radioValueFour = $('input[name="question-4"]:checked').val();
-        console.log(radioValueFour);
-        if (radioValueFour === triviaQuestions[4].correctAnswer) {
-            correct++;
-        }
-        else {
-            incorrect++;
-        }
-
-        $('#game').append('<h1>Totally Trivial Trivia!</h2>');
-        $('#game').append('<h2>Results:</h2>');
-        $('#game').append('<p>Correct Answers: ' + correct + '</p>');
-        $('#game').append('<p>Incorrect Answers: ' + incorrect + '</p>');
-        // $('#game').append('<p>Unanswered: ' + (triviaQuestions.length - (incorrect + correct)) + '</p>');
+        $('#results').append('<h1>Totally Trivial Trivia!</h2>');
+        $('#results').append('<h2>Results:</h2>');
+        $('#results').append('<p>Correct Answers: ' + correct + '</p>');
+        $('#results').append('<p>Incorrect Answers: ' + incorrect + '</p>');
+        $('#results').append('<p>Unanswered: ' + unanswered + '</p>');
 })
+
 }
 
 // MAIN 
 // ==========================================================================
 // Game start screen with h1 and start button
-$('#game').append('<h1 id="title">Totally Trivial Trivia!</h2>');
-$('#game').append('<button id="start-button">Start</button>');
+$('#game-start').append('<h1 id="title">Totally Trivial Trivia!</h2>');
+$('#game-start').append('<button id="start-button">Start</button>');
 
 // On-click event function to start the game
 $('#start-button').on('click', function() {
