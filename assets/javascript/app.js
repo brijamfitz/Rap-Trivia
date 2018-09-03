@@ -132,8 +132,7 @@ $('#start-button').on('click', function() {
 
     startCountdown();
     generateQuestions();
-    displayResults();
-    
+    displayResults(); 
 });
 
 
