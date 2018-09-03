@@ -53,22 +53,23 @@ function decrement () {
     timerDiv.attr('id', 'countdown');
     $('#title').append(timerDiv);
     $('#countdown').html('Time remaining: ' + timer + ' seconds');
-    if (timer === 0) {
-        stopCountdown();
-    }
 }
 
 function stopCountdown () {
     clearInterval(intervalId);
-    displayResults();
-
+    
     $('#game-start').hide();
         $('#game').hide();
 
+    if (timer === 0) {   
         for (var i = 0; i < triviaQuestions.length; i++) {
             var radioValue = $('input[name="question-' + i + '"]:checked').val();
+            var isNotChecked = ($('input').is(':not(:checked)'))
             if (radioValue === triviaQuestions[i].correctAnswer) {
                 correct++; 
+            }
+            else if (isNotChecked) {
+                unanswered++;
             }
             else {
                 incorrect++;
@@ -77,9 +78,10 @@ function stopCountdown () {
 
         $('#results').append('<h1>Totally Trivial Trivia!</h2>');
         $('#results').append('<h2>Results:</h2>');
-        $('#results').append('<p>Correct Answers: ' + correct + '</p>');
-        $('#results').append('<p>Incorrect Answers: ' + incorrect + '</p>');
+        $('#results').append('<p>Correct: ' + correct + '</p>');
+        $('#results').append('<p>Incorrect: ' + incorrect + '</p>');
         $('#results').append('<p>Unanswered: ' + unanswered + '</p>');
+    } 
 }
 
 function generateQuestions () {
@@ -102,8 +104,12 @@ function displayResults () {
 
         for (var i = 0; i < triviaQuestions.length; i++) {
             var radioValue = $('input[name="question-' + i + '"]:checked').val();
+            var isNotChecked = ($('input').is(':not(:checked)'))
             if (radioValue === triviaQuestions[i].correctAnswer) {
                 correct++; 
+            }
+            else if (isNotChecked) {
+                unanswered++;
             }
             else {
                 incorrect++;
@@ -112,8 +118,8 @@ function displayResults () {
 
         $('#results').append('<h1>Totally Trivial Trivia!</h2>');
         $('#results').append('<h2>Results:</h2>');
-        $('#results').append('<p>Correct Answers: ' + correct + '</p>');
-        $('#results').append('<p>Incorrect Answers: ' + incorrect + '</p>');
+        $('#results').append('<p>Correct: ' + correct + '</p>');
+        $('#results').append('<p>Incorrect: ' + incorrect + '</p>');
         $('#results').append('<p>Unanswered: ' + unanswered + '</p>');
 })
 
