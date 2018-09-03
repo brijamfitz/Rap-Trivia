@@ -60,6 +60,26 @@ function decrement () {
 
 function stopCountdown () {
     clearInterval(intervalId);
+    displayResults();
+
+    $('#game-start').hide();
+        $('#game').hide();
+
+        for (var i = 0; i < triviaQuestions.length; i++) {
+            var radioValue = $('input[name="question-' + i + '"]:checked').val();
+            if (radioValue === triviaQuestions[i].correctAnswer) {
+                correct++; 
+            }
+            else {
+                incorrect++;
+            }
+        }
+
+        $('#results').append('<h1>Totally Trivial Trivia!</h2>');
+        $('#results').append('<h2>Results:</h2>');
+        $('#results').append('<p>Correct Answers: ' + correct + '</p>');
+        $('#results').append('<p>Incorrect Answers: ' + incorrect + '</p>');
+        $('#results').append('<p>Unanswered: ' + unanswered + '</p>');
 }
 
 function generateQuestions () {
@@ -83,8 +103,8 @@ function displayResults () {
         for (var i = 0; i < triviaQuestions.length; i++) {
             var radioValue = $('input[name="question-' + i + '"]:checked').val();
             if (radioValue === triviaQuestions[i].correctAnswer) {
-                correct++;
-            } 
+                correct++; 
+            }
             else {
                 incorrect++;
             }
