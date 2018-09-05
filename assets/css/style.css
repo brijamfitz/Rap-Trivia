@@ -1,0 +1,45 @@
+body {
+    margin: 20px 20px 20px 20px;
+    padding: 20px 20px 20px 20px;
+    background-color: black;
+    font-family: 'Rock Salt', cursive;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 48px;
+    color: red;
+    margin: 10px;
+    padding-top: 20px;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 22px;
+    color: red;
+    margin: 40px;
+}
+
+button {
+    text-align: center;
+    padding: 10px;
+    background: yellow;
+    margin: 20px;
+}
+
+div {
+    color: red;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    padding: 10px;
+    color: red;
+    font-size: 12px;
+}
+
+#game-start,
+#results {
+    text-align: center;
+}
